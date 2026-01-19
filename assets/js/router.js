@@ -42,6 +42,7 @@ export async function render(){
 
   const map = {
     login: { title: 'Entrar', file: 'pages/login.html' },
+    signup: { title: 'Criar conta', file: 'pages/signup.html' },
     dashboard: { title: 'Dashboard', file: 'pages/dashboard.html' },
     tasks: { title: 'Tarefas', file: 'pages/tasks.html' },
   };
