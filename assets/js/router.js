@@ -26,39 +26,56 @@ async function maybeMountController(page){
 }
 
 export async function render(){
-  const session = await getSession();
-  const page = currentPage();
-
-  // Gate de auth
-  if (!session && !['login','signup'].includes(page)){
-    location.replace('app.html#/login');
-    return;
-  }
-  if (session && ['login','signup'].includes(page)){
-    location.replace('app.html#/dashboard');
-    return;
+  const errBox = document.getElementById('app-error');
+  if (errBox){
+    errBox.style.display = 'none';
+    errBox.innerHTML = '';
   }
 
-  btnLogout().style.display = session ? 'inline-block' : 'none';
+  try {
+    const session = await getSession();
+    const page = currentPage();
 
-  const map = {
-    login: { title: 'Entrar', file: 'pages/login.html' },
-    signup: { title: 'Criar conta', file: 'pages/signup.html' },
-    dashboard: { title: 'Dashboard', file: 'pages/dashboard.html' },
-    tasks: { title: 'Tarefas', file: 'pages/tasks.html' },
-  };
-
-  const route = map[page] || map.dashboard;
-  topTitle().textContent = route.title;
-
-  content().innerHTML = await loadHtml(route.file);
-  await maybeMountController(page);
-
-  // logout
-  btnLogout().onclick = async () => {
-    await signOut();
+    if (!session && !['login','signup'].includes(page)){
       location.replace('app.html#/login');
-  };
+      return;
+    }
+    if (session && ['login','signup'].includes(page)){
+      location.replace('app.html#/dashboard');
+      return;
+    }
+
+    btnLogout().style.display = session ? 'inline-block' : 'none';
+
+    const map = {
+      login: { title: 'Entrar', file: 'pages/login.html' },
+      signup: { title: 'Criar conta', file: 'pages/signup.html' },
+      dashboard: { title: 'Dashboard', file: 'pages/dashboard.html' },
+      tasks: { title: 'Tarefas', file: 'pages/tasks.html' },
+    };
+
+    const route = map[page] || map.dashboard;
+    topTitle().textContent = route.title;
+
+    content().innerHTML = await loadHtml(route.file);
+    await maybeMountController(page);
+
+    btnLogout().onclick = async () => {
+      await signOut();
+      location.replace('app.html#/login');
+    };
+
+  } catch (e) {
+    if (errBox){
+      errBox.style.display = 'block';
+      errBox.innerHTML = `
+        <div class="card-title">Erro</div>
+        <div class="card-desc" style="white-space:pre-wrap;">
+${String(e?.message || e)}
+        </div>
+      `;
+    }
+  }
 }
 
 export function initRouter(){
