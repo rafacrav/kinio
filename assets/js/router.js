@@ -29,12 +29,12 @@ export async function render(){
   const page = currentPage();
 
   // Gate de auth
-  if (!session && page !== 'login'){
-    location.replace('app.html?page=login');
+  if (!session && !['login','signup'].includes(page)){
+    location.replace('app.html#/login');
     return;
   }
-  if (session && page === 'login'){
-    location.replace('app.html?page=dashboard');
+  if (session && ['login','signup'].includes(page)){
+    location.replace('app.html#/dashboard');
     return;
   }
 
