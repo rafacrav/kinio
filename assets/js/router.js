@@ -17,6 +17,7 @@ async function loadHtml(path){
 async function maybeMountController(page){
   const controllers = {
     login: () => import('../pages/login.js'),
+    signup: () => import('../pages/signup.js'),
     tasks: () => import('../pages/tasks.js'),
   };
   if (!controllers[page]) return;
