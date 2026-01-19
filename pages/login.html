@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-title">Entrar</div>
+  <div class="card-desc">Email e senha.</div>
+
+  <form id="login-form" style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+    <select class="input" name="mode">
+      <option value="login">Login</option>
+      <option value="signup">Criar conta</option>
+    </select>
+
+    <input class="input" name="email" type="email" placeholder="seu@email.com" required />
+    <input class="input" name="password" type="password" placeholder="senha" required />
+
+    <button class="btn btn-primary btn-full" type="submit">Continuar</button>
+    <div id="login-msg" class="card-desc"></div>
+  </form>
+</div>
