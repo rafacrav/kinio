@@ -1,0 +1,179 @@
+/* =========================
+   KINIO • Base Theme
+   ========================= */
+
+:root {
+  /* cores */
+  --bg: #0e1116;
+  --panel: #151a22;
+  --panel-soft: #1b2230;
+  --border: #262c3a;
+
+  --primary: #7c7cff;
+  --primary-soft: rgba(124,124,255,.15);
+  --success: #4ade80;
+  --danger: #f87171;
+  --warning: #facc15;
+  --muted: #9aa3b2;
+
+  /* texto */
+  --text: #e5e7eb;
+  --text-soft: #b6bdc9;
+
+  /* radius */
+  --radius-sm: 10px;
+  --radius: 14px;
+  --radius-lg: 18px;
+
+  /* espaçamentos */
+  --gap-xs: 6px;
+  --gap-sm: 10px;
+  --gap: 14px;
+  --gap-lg: 20px;
+
+  /* fonte */
+  --font: -apple-system, BlinkMacSystemFont, "Inter",
+           "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* reset básico */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+}
+
+/* layout base */
+.app {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* topbar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar h1 {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* container */
+.container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+/* cards */
+.card {
+  background: var(--panel-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--text-soft);
+}
+
+/* botões */
+.btn {
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn-soft {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* listas */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.list-item {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* badges */
+.badge {
+  padding: 4px 10px;
+  font-size: 11px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.badge.success { background: rgba(74,222,128,.15); color: var(--success); }
+.badge.warn    { background: rgba(250,204,21,.15); color: var(--warning); }
+.badge.danger  { background: rgba(248,113,113,.15); color: var(--danger); }
+
+/* inputs (futuro login) */
+.input {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+/* footer / ações */
+.actions {
+  display: flex;
+  gap: var(--gap-sm);
+}
