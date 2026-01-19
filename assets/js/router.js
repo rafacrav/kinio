@@ -5,7 +5,7 @@ const btnLogout = () => document.getElementById('btn-logout');
 const topTitle = () => document.getElementById('top-title');
 
 function currentPage(){
-  return new URLSearchParams(location.search).get('page') || 'dashboard';
+  return location.hash.replace('#/', '') || 'dashboard';
 }
 
 async function loadHtml(path){
@@ -57,11 +57,12 @@ export async function render(){
   // logout
   btnLogout().onclick = async () => {
     await signOut();
-    location.replace('app.html?page=login');
+      location.replace('app.html#/login');
   };
 }
 
 export function initRouter(){
+  window.addEventListener('hashchange', () => render());
   onAuthChange(() => render());
   render();
 }
